@@ -1,2 +1,2 @@
-# LazyGrid and LazyCollapsibleGrid
+# LazyGrid
 LazyGrid library for Jetpack Compose.
