@@ -51,7 +51,7 @@ android {
 
 dependencies {
 
-    implementation 'com.github.yusufarisoy:lazy-grid:1.0'
+    implementation project(':lazygrid')
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
