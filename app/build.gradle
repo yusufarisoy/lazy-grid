@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.yusufarisoy.lazygridapp"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion Versions.compose
+        kotlinCompilerVersion '1.6.10'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(':lazygrid')
+
+    implementation Libs.coreKtx
+    implementation Libs.appCompat
+    //Compose
+    implementation Libs.composeUi
+    implementation Libs.composeMaterial
+    implementation Libs.composeTooling
+    implementation Libs.activityCompose
+    implementation Libs.hiltNavigationCompose
+    implementation Libs.navigationCompose
+    implementation Libs.constraintLayoutCompose
+    //Retrofit and Gson
+    implementation Libs.retrofit
+    implementation Libs.retrofitConverter
+    implementation Libs.gson
+    //Lifecycle
+    implementation Libs.lifecycleFragment
+    implementation Libs.lifecycleCommon
+    implementation Libs.lifecycleViewModel
+    implementation Libs.lifecycleRunTime
+    //Coroutines
+    implementation Libs.coroutinesCore
+    implementation Libs.coroutinesAndroid
+    //Dagger Hilt
+    kapt Libs.hiltCompiler
+    implementation Libs.hiltAndroid
+    implementation Libs.hiltViewModel
+    //Coil
+    implementation Libs.coilCompose
+    //Test
+    testImplementation Libs.testJunit
+    androidTestImplementation Libs.testExtJunit
+    androidTestImplementation Libs.espressoCore
+    androidTestImplementation Libs.composeUiTest
+    debugImplementation Libs.composeUiTooling
+}

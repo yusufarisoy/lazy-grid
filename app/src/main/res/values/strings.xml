@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">LazyGridApp</string>
+    <string name="title_lazy_grid">LazyGrid</string>
+    <string name="title_lazy_collapsible_grid">LazyCollapsibleGrid</string>
+
+    <string name="text_lazy_grid">Lazy Grid</string>
+    <string name="text_lazy_collapsible_grid">Lazy Collapsible Grid</string>
+    <string name="text_item_placement_type">Item placement type: %1$s</string>
+    <string name="text_characters">Characters</string>
+    <string name="text_total">%1$d total</string>
+    <string name="text_gender">Gender:</string>
+    <string name="text_origin">Origin:</string>
+
+    <string name="btn_show_more">Show More</string>
+    <string name="btn_show_less">Show Less</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_fill_size">FillSize</string>
+    <string name="btn_fixed_size">FixedSize</string>
+    <string name="btn_spaced_by">SpacedBy</string>
+</resources>
