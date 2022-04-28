@@ -25,11 +25,17 @@ Items spaced by a fixed space and share the remaining width equally.
 
 ## Setup
 ### Gradle
-```
+```Gradle
+// Old - root build.gradle
 allprojects {
     repositories {
-        ...
         maven { url 'https://jitpack.io' }
+    }
+}
+// New - settings.gradle
+dependencyResolutionManagement {
+    repositories {
+        maven { url 'https://www.jitpack.io' }
     }
 }
 
@@ -38,8 +44,8 @@ dependencies {
 }
 ```
 
-### Compsable
-```
+### Composable
+```Kotlin
 LazyColumn(modifier = Modifier.fillMaxSize()) {
     LazyGrid(
         rows = listOf(),
