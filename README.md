@@ -4,6 +4,14 @@
 <br>
 LazyGrid library for [Jetpack Compose](https://developer.android.com/jetpack/compose).
 
+## About
+LazyGrid is a grid view implementation for Android's new and modern UI toolkit Compose. This library is suitable for to display large amount of data, it'll only compose the rows which are visible in the component’s viewport. It can be used in a LazyColumn to create a grid view.
+
+LazyCollapsibleGrid version has the ability to collapse desired amount of rows with animations. It has some extra parameters but is also lazy and suitable for to display big data.
+
+## Metrics
+Metrics is the way of measuring the performance of composables. Ideally a composable method should be `restartable` and `skipabble` for the compiler to work with best performance. Besides being lazy, LazyGrid and LazyCollapsibleGrid are also `restartable` and `skipabble` for better performance for your Android application.
+
 ## Demo
 ### FillSize
 All items of row shares the full width equally without any spaces.
@@ -26,16 +34,9 @@ Items spaced by a fixed space and share the remaining width equally.
 ## Setup
 ### Gradle
 ```Gradle
-// Old - root build.gradle
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
-    }
-}
-// New - settings.gradle
-dependencyResolutionManagement {
-    repositories {
-        maven { url 'https://www.jitpack.io' }
     }
 }
 
