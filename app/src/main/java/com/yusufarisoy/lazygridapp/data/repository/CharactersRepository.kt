@@ -3,13 +3,13 @@ package com.yusufarisoy.lazygridapp.data.repository
 import com.yusufarisoy.lazygrid.data.RowItem
 import com.yusufarisoy.lazygridapp.data.entity.CharacterUiModel
 import com.yusufarisoy.lazygridapp.data.entity.mapper.CharactersResponseToCharactersUiModelMapper
-import com.yusufarisoy.lazygridapp.network.ApiService
+import com.yusufarisoy.lazygridapp.data.repository.datasource.CharactersDataSource
 import com.yusufarisoy.lazygridapp.util.mapWith
 import com.yusufarisoy.lazygridapp.view.state.CharactersUiModel
 import javax.inject.Inject
 
-class ApiRepository @Inject constructor(
-    private val service: ApiService,
+class CharactersRepository @Inject constructor(
+    private val dataSource: CharactersDataSource,
     private val mapper: CharactersResponseToCharactersUiModelMapper
 ) {
 
@@ -22,7 +22,7 @@ class ApiRepository @Inject constructor(
         characterName: String? = null,
         page: Int? = null
     ): CharactersUiModel {
-        val response = service.getCharacters(
+        val response = dataSource.getCharacters(
             characterName,
             page
         )

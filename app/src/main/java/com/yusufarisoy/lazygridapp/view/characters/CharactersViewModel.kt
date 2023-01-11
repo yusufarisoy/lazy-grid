@@ -2,7 +2,7 @@ package com.yusufarisoy.lazygridapp.view.characters
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yusufarisoy.lazygridapp.domain.FetchCharactersUseCase
+import com.yusufarisoy.lazygridapp.data.repository.CharactersRepository
 import com.yusufarisoy.lazygridapp.view.home.GridType
 import com.yusufarisoy.lazygridapp.view.state.CharactersState
 import com.yusufarisoy.lazygridapp.view.state.CharactersState.Loading
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharactersViewModel @Inject constructor(
-    private val fetchCharactersUseCase: FetchCharactersUseCase
+    private val charactersRepository: CharactersRepository
 ) : ViewModel() {
 
     private var page = 1
@@ -36,12 +36,14 @@ class CharactersViewModel @Inject constructor(
         isLoading = true
         this@CharactersViewModel.elementPerRow = elementPerRow
         this@CharactersViewModel.constantRowCount = constantRowCount
-        val characters = fetchCharactersUseCase.run(
-            FetchCharactersUseCase.Params(
-                elementPerRow = elementPerRow,
-                constantRowCount = constantRowCount,
-                isCollapsible = gridType == GridType.Collapsible
-            )
+        val characters = charactersRepository.fetchCharacters(
+            elementPerRow = elementPerRow,
+            constantRowCount = constantRowCount,
+            isCollapsible = gridType == GridType.Collapsible,
+            currentItems = emptyList(),
+            currentCollapsibleItems = emptyList(),
+            characterName = null,
+            page = null
         )
         _state.value = Content(characters)
         isLoading = false
@@ -52,15 +54,14 @@ class CharactersViewModel @Inject constructor(
             page++
             isLoading = true
             val uiModel = (_state.value as Content).uiModel
-            val characters = fetchCharactersUseCase.run(
-                FetchCharactersUseCase.Params(
-                    elementPerRow = elementPerRow,
-                    constantRowCount = constantRowCount,
-                    isCollapsible = gridType == GridType.Collapsible,
-                    currentItems = uiModel.characters,
-                    currentCollapsibleItems = uiModel.collapsibleCharacters,
-                    page = page
-                )
+            val characters = charactersRepository.fetchCharacters(
+                elementPerRow = elementPerRow,
+                constantRowCount = constantRowCount,
+                isCollapsible = gridType == GridType.Collapsible,
+                currentItems = uiModel.characters,
+                currentCollapsibleItems = uiModel.collapsibleCharacters,
+                characterName = null,
+                page = page
             )
             _state.value = Content(characters)
             isLoading = false

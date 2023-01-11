@@ -1,6 +1,8 @@
 package com.yusufarisoy.lazygridapp.di
 
 import com.google.gson.Gson
+import com.yusufarisoy.lazygridapp.data.repository.datasource.CharactersDataSource
+import com.yusufarisoy.lazygridapp.data.repository.datasource.CharactersDataSourceImpl
 import com.yusufarisoy.lazygridapp.network.ApiService
 import com.yusufarisoy.lazygridapp.network.EndPoints.BASE_URL
 import dagger.Module
@@ -14,6 +16,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
+
+    @Provides
+    fun provideCharactersDataSource(service: ApiService): CharactersDataSource =
+        CharactersDataSourceImpl(service)
 
     @Provides
     fun provideRickAndMortyService(retrofit: Retrofit): ApiService =
